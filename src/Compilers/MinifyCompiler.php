@@ -84,7 +84,8 @@ class MinifyCompiler extends BladeCompiler
     public function compileMinify($value)
     {
         if ($this->ignoredPaths) {
-            $path = str_replace('\\', '/', $this->getPath());
+            $path = $this->getPath();
+            $path = str_replace('\\', '/', $path === null ? '' : $path);
 
             foreach ($this->ignoredPaths as $ignoredPath) {
                 if (strpos($path, $ignoredPath) !== false) {
